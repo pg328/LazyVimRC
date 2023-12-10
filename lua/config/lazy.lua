@@ -34,19 +34,19 @@ require("lazy").setup({
         },
       },
     },
-    {
-      "telescope.nvim",
-      dependencies = {
-        'nvim-telescope/telescope-file-browser.nvim', -- NetRW replacement,
-        build = "make",
-        config = function()
-          require("telescope").load_extension("file_browser")
-          vim.opts.set('n', '<leader>e',
-            '<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", cwd = telescope_buffer_dir(), respect_git_ignore = false, hide_parent_dir = true, git_status = false,  hidden = true, grouped = true, previewer = false, initial_mode = "normal", layout_config = { height = 40 }})<CR>',
-            { noremap = true, silent = true, desc = "File Browser" })
-        end,
-      }
-    },
+    -- {
+    --   "telescope.nvim",
+    --   dependencies = {
+    --     'nvim-telescope/telescope-file-browser.nvim', -- NetRW replacement,
+    --     build = "make",
+    --     config = function()
+    --       require("telescope").load_extension("file_browser")
+    --       vim.opts.set('n', '<leader>e',
+    --         '<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", cwd = telescope_buffer_dir(), respect_git_ignore = false, hide_parent_dir = true, git_status = false,  hidden = true, grouped = true, previewer = false, initial_mode = "normal", layout_config = { height = 40 }})<CR>',
+    --         { noremap = true, silent = true, desc = "File Browser" })
+    --     end,
+    --   }
+    -- },
     -- add telescope-fzf-native
     {
       "telescope.nvim",

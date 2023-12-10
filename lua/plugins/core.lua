@@ -102,13 +102,13 @@ return {
               initial_mode = 'normal'
             }
           },
-          defaults = {
-            mappings = {
-              n = {
-                ['q'] = actions.close
-              }
-            }
-          },
+          -- defaults = {
+          -- mappings = {
+          --   n = {
+          -- ['q'] = actions.close
+          --   }
+          -- }
+          -- },
           extensions = {
             file_browser = {
               theme = 'dropdown',
