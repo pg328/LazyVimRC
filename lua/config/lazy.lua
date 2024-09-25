@@ -7,11 +7,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim",                                    import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- change some telescope options and a keymap to browse plugin files
     {
       "nvim-telescope/telescope.nvim",
@@ -49,6 +48,23 @@ require("lazy").setup({
     -- },
     -- add telescope-fzf-native
     {
+      "christoomey/vim-tmux-navigator",
+      cmd = {
+        "TmuxNavigateLeft",
+        "TmuxNavigateDown",
+        "TmuxNavigateUp",
+        "TmuxNavigateRight",
+        "TmuxNavigatePrevious",
+      },
+      keys = {
+        { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+        { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+        { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+        { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+        { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      },
+    },
+    {
       "telescope.nvim",
       dependencies = {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -56,7 +72,22 @@ require("lazy").setup({
         config = function()
           require("telescope").load_extension("fzf")
         end,
-      }
+      },
+    },
+    {
+      "bufferline.nvim",
+      dependencies = {
+        "akinsho/bufferline.nvim",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        keys = function()
+          return {
+            { "<C-S-Tab>", "<cmd>BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
+            { "<C-Tab>", "<cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
+            { "<leader>bb", "<cmd>BufferLinePick<CR>", desc = "Pick" },
+            { "<leader>bw", "<cmd>BufferLinePickClose<CR>", desc = "Pick Close" },
+          }
+        end,
+      },
     },
     { -- add symbols-outline
       "simrat39/symbols-outline.nvim",
@@ -98,4 +129,4 @@ require("lazy").setup({
     },
   },
 })
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")

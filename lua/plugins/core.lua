@@ -20,12 +20,11 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      require("catppuccin").setup {
+      require("catppuccin").setup({
         flavour = "mocha",
-        transparent_background = true
-
-      }
-    end
+        transparent_background = true,
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -43,13 +42,14 @@ return {
         end,
       },
     },
-  }, {
+  },
+  {
 
-  "LazyVim/LazyVim",
-  opts = {
-    colorscheme = "catppuccin",
-  }
-},
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
   -- change trouble config
   {
     "folke/trouble.nvim",
@@ -84,23 +84,25 @@ return {
     dependencies = {
       "nvim-telescope/telescope-file-browser.nvim",
       config = function()
-        local status, tscope = pcall(require, 'telescope')
-        if (not status) then return end
+        local status, tscope = pcall(require, "telescope")
+        if not status then
+          return
+        end
 
-        local actions = require('telescope.actions')
+        local actions = require("telescope.actions")
 
         ---@diagnostic disable-next-line: lowercase-global
         function telescope_buffer_dir()
-          return vim.fn.expand('%:p:h')
+          return vim.fn.expand("%:p:h")
         end
 
-        local fb = require 'telescope'.extensions.file_browser.actions
+        local fb = require("telescope").extensions.file_browser.actions
 
-        tscope.setup {
+        tscope.setup({
           pickers = {
             buffers = {
-              initial_mode = 'normal'
-            }
+              initial_mode = "normal",
+            },
           },
           -- defaults = {
           -- mappings = {
@@ -111,26 +113,28 @@ return {
           -- },
           extensions = {
             file_browser = {
-              theme = 'dropdown',
+              theme = "dropdown",
               hijack_netrw = true,
               mappings = {
-                ['i'] = {
-                  ['<C-w>'] = function() vim.cmd('normal vbd') end,
+                ["i"] = {
+                  ["<C-w>"] = function()
+                    vim.cmd("normal vbd")
+                  end,
                 },
-                ['n'] = {
-                  ['N'] = fb.create,
-                  ['h'] = fb.goto_parent_dir,
-                  ['/'] = function()
-                    vim.cmd('startinsert')
-                  end
-                }
-              }
-            }
+                ["n"] = {
+                  ["N"] = fb.create,
+                  ["h"] = fb.goto_parent_dir,
+                  ["/"] = function()
+                    vim.cmd("startinsert")
+                  end,
+                },
+              },
+            },
           },
-        }
+        })
 
-        tscope.load_extension('file_browser')
-      end
+        tscope.load_extension("file_browser")
+      end,
     },
     keys = {
       -- add a keymap to browse plugin files
@@ -141,7 +145,7 @@ return {
         desc = "Find Plugin File",
       },
       {
-        '<leader>e',
+        "<leader>e",
         function()
           require("telescope").extensions.file_browser.file_browser({
             path = "%:p:h",
@@ -152,14 +156,12 @@ return {
             hidden = true,
             grouped = true,
             previewer = false,
-            initial_mode =
-            "normal",
-            layout_config = { height = 40 }
+            initial_mode = "normal",
+            layout_config = { height = 40 },
           })
         end,
-        { noremap = true, silent = true, desc = "File Browser" }
-      }
-
+        { noremap = true, silent = true, desc = "File Browser" },
+      },
     },
     -- change some options
     opts = {
@@ -296,16 +298,6 @@ return {
     end,
   },
 
-  -- or you can return new options to override all the defaults
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return {
-        --[[add your custom lualine config here]]
-      }
-    end,
-  },
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
