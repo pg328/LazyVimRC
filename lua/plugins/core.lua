@@ -104,13 +104,17 @@ return {
               initial_mode = "normal",
             },
           },
-          -- defaults = {
-          -- mappings = {
-          --   n = {
-          -- ['q'] = actions.close
-          --   }
-          -- }
-          -- },
+          defaults = {
+            -- mappings = {
+            --   n = {
+            -- ['q'] = actions.close
+            --   }
+            -- },
+            file_ignore_patterns = {
+              "node_modules",
+              ".git",
+            },
+          },
           extensions = {
             file_browser = {
               theme = "dropdown",
@@ -324,6 +328,8 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "typescript-language-server",
+        "js-debug-adapter",
       },
     },
   },
