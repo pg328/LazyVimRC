@@ -96,8 +96,6 @@ return {
           return vim.fn.expand("%:p:h")
         end
 
-        local fb = require("telescope").extensions.file_browser.actions
-
         tscope.setup({
           pickers = {
             buffers = {
@@ -115,26 +113,7 @@ return {
               ".git",
             },
           },
-          extensions = {
-            file_browser = {
-              theme = "dropdown",
-              hijack_netrw = true,
-              mappings = {
-                ["i"] = {
-                  ["<C-w>"] = function()
-                    vim.cmd("normal vbd")
-                  end,
-                },
-                ["n"] = {
-                  ["N"] = fb.create,
-                  ["h"] = fb.goto_parent_dir,
-                  ["/"] = function()
-                    vim.cmd("startinsert")
-                  end,
-                },
-              },
-            },
-          },
+          extensions = {},
         })
 
         tscope.load_extension("file_browser")
@@ -312,9 +291,6 @@ return {
       }
     end,
   },
-
-  -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
